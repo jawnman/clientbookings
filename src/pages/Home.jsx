@@ -90,7 +90,7 @@ export default function Home() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
                         >
-                            Professional photography that tells your story with passion and precision.
+                            Professional Philadelphia photography capturing concerts, events, and portraits with passion and precision.
                         </motion.p>
 
                         <motion.div
