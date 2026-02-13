@@ -35,7 +35,7 @@ export default function ThankYou() {
     return (
         <section className="min-h-[80vh] flex items-center justify-center pt-24 pb-12 px-6">
             <motion.div
-                className="text-center max-w-md mx-auto"
+                className="text-center max-w-md mx-auto flex flex-col items-center"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
