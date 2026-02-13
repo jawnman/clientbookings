@@ -166,7 +166,6 @@ export default function Quote() {
         numProperties: '',
         date: '',
         location: '',
-        flexible: false,
         name: '',
         email: '',
         phone: '',
@@ -245,7 +244,6 @@ export default function Quote() {
                 num_properties: form.numProperties || 'N/A',
                 num_properties: form.numProperties || 'N/A',
                 date: form.date ? `${form.date}${form.time ? ` (${form.time})` : ''}` : 'Not specified',
-                flexible: form.flexible ? 'Yes' : 'No',
                 estimated_quote: `$${quote}`,
                 notes: form.notes || 'None',
             }
@@ -603,35 +601,6 @@ export default function Quote() {
                                                             onChange={(e) => update('location', e.target.value)}
                                                         />
                                                     </div>
-                                                    <label className="flex items-center gap-3 cursor-pointer select-none">
-                                                        <motion.div
-                                                            className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-colors duration-300 ${form.flexible ? 'bg-primary border-primary' : 'border-gray-300'
-                                                                }`}
-                                                            whileTap={{ scale: 0.9 }}
-                                                            onClick={() => update('flexible', !form.flexible)}
-                                                        >
-                                                            <AnimatePresence>
-                                                                {form.flexible && (
-                                                                    <motion.svg
-                                                                        initial={{ scale: 0 }}
-                                                                        animate={{ scale: 1 }}
-                                                                        exit={{ scale: 0 }}
-                                                                        width="14"
-                                                                        height="14"
-                                                                        viewBox="0 0 24 24"
-                                                                        fill="none"
-                                                                        stroke="white"
-                                                                        strokeWidth="3"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                    >
-                                                                        <polyline points="20 6 9 17 4 12" />
-                                                                    </motion.svg>
-                                                                )}
-                                                            </AnimatePresence>
-                                                        </motion.div>
-                                                        <span className="text-sm text-gray-600">I'm flexible on the date</span>
-                                                    </label>
                                                 </div>
                                             </motion.div>
                                         )}
