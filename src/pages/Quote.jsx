@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import { EMAIL_CONFIG } from '../config/email'
 import ScrollReveal from '../components/ScrollReveal'
@@ -136,9 +137,25 @@ function Confetti() {
 }
 
 /* ===== MAIN COMPONENT ===== */
+const timeSlots = [
+    '08:00 AM - 09:00 AM',
+    '09:00 AM - 10:00 AM',
+    '10:00 AM - 11:00 AM',
+    '11:00 AM - 12:00 PM',
+    '12:00 PM - 01:00 PM',
+    '01:00 PM - 02:00 PM',
+    '02:00 PM - 03:00 PM',
+    '03:00 PM - 04:00 PM',
+    '04:00 PM - 05:00 PM',
+    '05:00 PM - 06:00 PM',
+]
+
 export default function Quote() {
+    const navigate = useNavigate()
+    const [step, setStep] = useState(1)
     const defaults = {
         service: '',
+        time: '',
         sessionType: '',
         portraitDuration: '',
         portraitLocation: '',
@@ -226,7 +243,8 @@ export default function Quote() {
                 guest_count: form.guestCount || 'N/A',
                 property_type: form.propertyType || 'N/A',
                 num_properties: form.numProperties || 'N/A',
-                date: form.date || 'Not specified',
+                num_properties: form.numProperties || 'N/A',
+                date: form.date ? `${form.date}${form.time ? ` (${form.time})` : ''}` : 'Not specified',
                 flexible: form.flexible ? 'Yes' : 'No',
                 estimated_quote: `$${quote}`,
                 notes: form.notes || 'None',
@@ -241,9 +259,7 @@ export default function Quote() {
             )
 
             localStorage.removeItem(LOCALSTORAGE_KEY)
-            setSubmitted(true)
-            setShowConfetti(true)
-            setTimeout(() => setShowConfetti(false), 3000)
+            navigate('/thank-you')
         } catch (error) {
             console.error('EmailJS Error:', error)
             alert('Something went wrong. Please try again or contact me directly at nickroehmxyz@gmail.com')
@@ -549,16 +565,33 @@ export default function Quote() {
                                             <motion.div variants={slideVariants} initial="initial" animate="animate" exit="exit">
                                                 <h2 className="heading-md mb-6">3. Date & Location</h2>
                                                 <div className="space-y-5">
-                                                    <div>
-                                                        <label className="form-label">Preferred Date</label>
-                                                        <input
-                                                            type="date"
-                                                            className="form-input"
-                                                            value={form.date}
-                                                            min={minDate}
-                                                            max={maxDate}
-                                                            onChange={(e) => update('date', e.target.value)}
-                                                        />
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                                        <div>
+                                                            <label className="form-label">Preferred Date</label>
+                                                            <input
+                                                                type="date"
+                                                                className="form-input"
+                                                                value={form.date}
+                                                                min={minDate}
+                                                                max={maxDate}
+                                                                onChange={(e) => update('date', e.target.value)}
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <label className="form-label">Preferred Time</label>
+                                                            <select
+                                                                className="form-input appearance-none bg-white"
+                                                                value={form.time}
+                                                                onChange={(e) => update('time', e.target.value)}
+                                                            >
+                                                                <option value="">Select a time slot...</option>
+                                                                {timeSlots.map((slot) => (
+                                                                    <option key={slot} value={slot}>
+                                                                        {slot}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div>
                                                         <label className="form-label">Location / Address</label>

@@ -8,6 +8,7 @@ import PinkSplash from './components/PinkSplash'
 import Home from './pages/Home'
 import About from './pages/About'
 import Quote from './pages/Quote'
+import ThankYou from './pages/ThankYou'
 
 function App() {
     const location = useLocation()
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/quote" element={<Quote />} />
+                    <Route path="/thank-you" element={<ThankYou />} />
                 </Routes>
             </AnimatePresence>
             <Footer />
