@@ -41,7 +41,7 @@ export default function Navbar() {
                             style={{ fontFamily: 'var(--font-display)' }}
                             whileHover={{ scale: 1.02 }}
                         >
-                            Shot By <span className="font-light text-gray-400">Nick</span>
+                            Nick <span className="font-light text-gray-400">Roehm</span>
                         </motion.span>
                     </Link>
 

@@ -33,7 +33,7 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
                         <div className="text-center md:text-left">
                             <span className="text-lg font-bold tracking-tight text-primary" style={{ fontFamily: 'var(--font-display)' }}>
-                                Shot By <span className="font-light text-gray-400">Nick</span>
+                                Nick <span className="font-light text-gray-400">Roehm</span>
                             </span>
                             <p className="text-xs text-gray-400 mt-1">Capturing life's beautiful moments.</p>
                         </div>
@@ -47,7 +47,7 @@ export default function Footer() {
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200/60">
                     <p className="text-xs text-gray-400">
-                        © {new Date().getFullYear()} Shot By Nick. All rights reserved.
+                        © {new Date().getFullYear()} Nick Roehm. All rights reserved.
                     </p>
                     <div className="flex gap-3">
                         {socialLinks.map((social) => (
