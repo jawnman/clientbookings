@@ -242,7 +242,6 @@ export default function Quote() {
                 guest_count: form.guestCount || 'N/A',
                 property_type: form.propertyType || 'N/A',
                 num_properties: form.numProperties || 'N/A',
-                num_properties: form.numProperties || 'N/A',
                 date: form.date ? `${form.date}${form.time ? ` (${form.time})` : ''}` : 'Not specified',
                 estimated_quote: `$${quote}`,
                 notes: form.notes || 'None',
