@@ -214,6 +214,21 @@ export default function Quote() {
     const validate = () => {
         const e = {}
         if (!form.service) e.service = 'Please select a service'
+
+        // Service-specific validation
+        if (form.service === 'portrait') {
+            if (!form.sessionType) e.sessionType = 'Please select a session type'
+            if (!form.portraitDuration) e.portraitDuration = 'Please select a duration'
+        }
+        if (form.service === 'event') {
+            if (!form.eventType) e.eventType = 'Please select an event type'
+            if (!form.eventDuration) e.eventDuration = 'Please select a duration'
+        }
+        if (form.service === 'realestate') {
+            if (!form.propertyType) e.propertyType = 'Please select a property type'
+            if (!form.numProperties) e.numProperties = 'Please select the number of properties'
+        }
+
         if (!form.name.trim()) e.name = 'Name is required'
         if (!form.email.trim()) e.email = 'Email is required'
         else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Please enter a valid email'
@@ -436,7 +451,9 @@ export default function Quote() {
                                                 {form.service === 'portrait' && (
                                                     <div className="space-y-6">
                                                         <div>
-                                                            <label className="form-label">Session Type</label>
+                                                            <label className="form-label">
+                                                                Session Type <span className="text-red-400">*</span>
+                                                            </label>
                                                             <div className="flex flex-wrap gap-3">
                                                                 {portraitSessionTypes.map((type) => (
                                                                     <ToggleButton
@@ -447,9 +464,14 @@ export default function Quote() {
                                                                     />
                                                                 ))}
                                                             </div>
+                                                            {errors.sessionType && (
+                                                                <p className="text-red-500 text-sm mt-2">{errors.sessionType}</p>
+                                                            )}
                                                         </div>
                                                         <div>
-                                                            <label className="form-label">Duration</label>
+                                                            <label className="form-label">
+                                                                Duration <span className="text-red-400">*</span>
+                                                            </label>
                                                             <div className="flex flex-wrap gap-3">
                                                                 {portraitDurations.map((dur) => (
                                                                     <ToggleButton
@@ -460,6 +482,9 @@ export default function Quote() {
                                                                     />
                                                                 ))}
                                                             </div>
+                                                            {errors.portraitDuration && (
+                                                                <p className="text-red-500 text-sm mt-2">{errors.portraitDuration}</p>
+                                                            )}
                                                         </div>
                                                         <div>
                                                             <label className="form-label">Preferred Location</label>
@@ -482,7 +507,9 @@ export default function Quote() {
                                                 {form.service === 'event' && (
                                                     <div className="space-y-6">
                                                         <div>
-                                                            <label className="form-label">Event Type</label>
+                                                            <label className="form-label">
+                                                                Event Type <span className="text-red-400">*</span>
+                                                            </label>
                                                             <div className="flex flex-wrap gap-3">
                                                                 {eventTypes.map((type) => (
                                                                     <ToggleButton
@@ -493,9 +520,14 @@ export default function Quote() {
                                                                     />
                                                                 ))}
                                                             </div>
+                                                            {errors.eventType && (
+                                                                <p className="text-red-500 text-sm mt-2">{errors.eventType}</p>
+                                                            )}
                                                         </div>
                                                         <div>
-                                                            <label className="form-label">Duration</label>
+                                                            <label className="form-label">
+                                                                Duration <span className="text-red-400">*</span>
+                                                            </label>
                                                             <div className="flex flex-wrap gap-3">
                                                                 {eventDurations.map((dur) => (
                                                                     <ToggleButton
@@ -506,6 +538,9 @@ export default function Quote() {
                                                                     />
                                                                 ))}
                                                             </div>
+                                                            {errors.eventDuration && (
+                                                                <p className="text-red-500 text-sm mt-2">{errors.eventDuration}</p>
+                                                            )}
                                                         </div>
                                                         <div>
                                                             <label className="form-label">Estimated Guest Count</label>
@@ -524,7 +559,9 @@ export default function Quote() {
                                                 {form.service === 'realestate' && (
                                                     <div className="space-y-6">
                                                         <div>
-                                                            <label className="form-label">Property Type</label>
+                                                            <label className="form-label">
+                                                                Property Type <span className="text-red-400">*</span>
+                                                            </label>
                                                             <div className="flex flex-wrap gap-3">
                                                                 {propertyTypes.map((type) => (
                                                                     <ToggleButton
@@ -535,9 +572,14 @@ export default function Quote() {
                                                                     />
                                                                 ))}
                                                             </div>
+                                                            {errors.propertyType && (
+                                                                <p className="text-red-500 text-sm mt-2">{errors.propertyType}</p>
+                                                            )}
                                                         </div>
                                                         <div>
-                                                            <label className="form-label">Number of Properties</label>
+                                                            <label className="form-label">
+                                                                Number of Properties <span className="text-red-400">*</span>
+                                                            </label>
                                                             <div className="flex flex-wrap gap-3">
                                                                 {propertyCount.map((opt) => (
                                                                     <ToggleButton
@@ -548,6 +590,9 @@ export default function Quote() {
                                                                     />
                                                                 ))}
                                                             </div>
+                                                            {errors.numProperties && (
+                                                                <p className="text-red-500 text-sm mt-2">{errors.numProperties}</p>
+                                                            )}
                                                         </div>
                                                         <p className="text-sm text-gray-400 italic">$150 per property</p>
                                                     </div>
